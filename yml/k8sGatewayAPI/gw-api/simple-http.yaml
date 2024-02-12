@@ -9,4 +9,4 @@ spec:
   rules:
   - backendRefs:
     - name: profile
-      port: 8080
+      port: 8081
