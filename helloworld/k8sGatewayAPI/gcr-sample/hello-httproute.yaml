@@ -1,11 +1,11 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: dashboard-route
-  namespace: banking-app
+  name: hello-route
+  namespace: hello
 spec:
   parentRefs:
-    - name: banking-gateway
+    - name: hello-gateway
   rules:
     - filters:
         - type: ResponseHeaderModifier
@@ -14,5 +14,5 @@ spec:
               - name: Controller
                 value: ISTIO
       backendRefs:
-        - name: dashboard
-          port: 3000
+        - name: hello
+          port: 80
