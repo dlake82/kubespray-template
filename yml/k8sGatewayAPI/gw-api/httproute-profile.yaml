@@ -12,11 +12,11 @@ spec:
         type: PathPrefix
         value: /users
   filters:
-    - type: ResponseHeaderModifier
-      responseHeaderModifier:
-        add:
-          - name: Controller
-            value: ISTIO
+  - type: ResponseHeaderModifier
+    responseHeaderModifier:
+      add:
+        - name: Controller
+          value: ISTIO
   backendRefs:
-    - name: profile
-      port: 8081
+  - name: profile
+    port: 8081
