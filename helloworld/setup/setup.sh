@@ -19,3 +19,7 @@ cat /proc/sys/net/ipv4/ip_forward
 sudo systemctl stop firewalld
 sudo systemctl disable firewalld
 sudo swapoff -a
+
+cp -r inventory/sample inventory/mycluster
+declare -a IPS=(192.168.56.101 192.168.56.102 192.168.56.103)
+CONFIG_FILE=inventory/mycluster/hosts.yml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
