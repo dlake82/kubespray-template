@@ -28,3 +28,18 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 # capacity 0 warning 제거
 systemctl restart containerd
 systemctl restart kubelet
+
+# istio 설치
+curl -L https://istio.io/downloadIstio | sh -
+cd istio-1.20.3
+
+# istio 권한 부여
+export PATH=$PWD/bin:$PATH
+sudo chmod 777 $PWD/bin
+sudo cp -f $PWD/bin/istioctl /usr/bin
+
+# gateway crd 설치, istio 설치
+kubectl get crd gateways.gateway.networking.k8s.io &> /dev/null || \
+  { kubectl kustomize "github.com/kubernetes-sigs/gateway-api/config/crd?ref=v1.0.0" | kubectl apply -f -; }
+istioctl install --set profile=minimal -y
+
