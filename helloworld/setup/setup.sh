@@ -19,3 +19,12 @@ cat /proc/sys/net/ipv4/ip_forward
 sudo systemctl stop firewalld
 sudo systemctl disable firewalld
 sudo swapoff -a
+
+# kubeconfig 가져옴
+mkdir -p $HOME/.kube
+sudo cp -f /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+# capacity 0 warning 제거
+systemctl restart containerd
+systemctl restart kubelet
