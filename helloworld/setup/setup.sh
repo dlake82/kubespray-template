@@ -29,7 +29,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 systemctl restart containerd
 systemctl restart kubelet
 
-# istio 설치
+# istio 다운
 curl -L https://istio.io/downloadIstio | sh -
 cd istio-1.20.3
 
